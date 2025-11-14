@@ -59,4 +59,4 @@ build/
 out/
 
 # Debug logs
-npm-debug.log*
+npm-debug.log*.env
