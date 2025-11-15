@@ -50,12 +50,20 @@ app.use((err, req, res, next) => {
   });
 });
 
+const PORT = process.env.PORT || 3000;
+const HOST = process.env.HOST || '0.0.0.0';
+
 // For local development
 if (process.env.NODE_ENV !== 'production') {
-  const PORT = process.env.PORT || 3000;
-  app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+  app.listen(PORT, HOST, () => {
+    console.log(`Server running in ${process.env.NODE_ENV || 'development'} mode on http://${HOST}:${PORT}`);
+  });
+} else {
+  // Production mode
+  app.listen(PORT, HOST, () => {
+    console.log(`Server is running in production mode on port ${PORT}`);
   });
 }
+
 // Export the Express API for Vercel
 module.exports = app;
